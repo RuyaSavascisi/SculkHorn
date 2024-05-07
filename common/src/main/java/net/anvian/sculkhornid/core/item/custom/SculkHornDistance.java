@@ -1,5 +1,6 @@
 package net.anvian.sculkhornid.core.item.custom;
 
+import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
@@ -33,11 +34,11 @@ public class SculkHornDistance extends Item {
         super(properties);
     }
 
-    float DAMAGE = 8f;
-    int DISTANCE = 16;
-    int COOLDOWN = 200;
-    int EXPERIENCE_LEVEL = 5;
-    int REMOVE_EXPERIENCE = -55;
+    float DAMAGE = ModConfigs.DISTANCE_DAMAGE.get().floatValue();
+    int DISTANCE = ModConfigs.DISTANCE_DISTANCE.get();
+    int COOLDOWN = ModConfigs.DISTANCE_COOLDOWN.get();
+    int EXPERIENCE_LEVEL = ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get();
+    int REMOVE_EXPERIENCE = ModConfigs.DISTANCE_REMOVE_EXPERIENCE.get();
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {

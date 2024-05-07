@@ -11,8 +11,20 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+    maven {
+        name = "FabricMC"
+        url = "https://maven.fabricmc.net/"
+    }
+}
+
 dependencies {
     compileOnly group:'org.spongepowered', name:'mixin', version:'0.8.5'
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:20.4.3"
 }
 
 configurations {

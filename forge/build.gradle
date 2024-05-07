@@ -62,9 +62,21 @@ minecraft {
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
+repositories {
+    maven {
+        name = "FabricMC"
+        url = "https://maven.fabricmc.net/"
+    }
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    api(fg.deobf("fuzs.forgeconfigapiport:forgeconfigapiport-forge:20.4.3"))
 }
 
 jar.finalizedBy('reobfJar')
