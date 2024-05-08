@@ -2,6 +2,9 @@ plugins {
     id 'multiloader-loader'
     id 'fabric-loom' version '1.6-SNAPSHOT'
 }
+base {
+    archivesName = "${mod_name}-fabric-${minecraft_version}"
+}
 repositories {
     maven {
         name = "Terraformers"
