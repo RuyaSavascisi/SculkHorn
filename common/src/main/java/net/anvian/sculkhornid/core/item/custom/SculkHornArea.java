@@ -36,7 +36,7 @@ public class SculkHornArea extends Item {
     int REMOVE_EXPERIENCE = ModConfigs.AREA_REMOVE_EXPERIENCE.get();
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.radius", RADIUS)));
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.area", Helper.ticksToSeconds(COOLDOWN))));
@@ -56,7 +56,7 @@ public class SculkHornArea extends Item {
             if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                 if (!player.isCreative()) {
                     player.giveExperiencePoints(REMOVE_EXPERIENCE);
-                    itemstack.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(interactionHand));
+                    itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);

@@ -13,14 +13,12 @@ logoFile = "${mod_id}.png"
 credits = "${credits}"
 authors = "${mod_author}"
 description = '''${description}'''
-
 [[dependencies.${mod_id}]]
 modId = "forge"
 mandatory = true
 versionRange = "${forge_version_range}"
 ordering = "NONE"
-side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
-
+side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "minecraft"
 mandatory = true

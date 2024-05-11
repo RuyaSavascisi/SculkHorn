@@ -2,12 +2,9 @@ plugins {
     id 'multiloader-loader'
     id 'fabric-loom' version '1.6-SNAPSHOT'
 }
-base {
-    archivesName = "${mod_name}-fabric-${minecraft_version}"
-}
 repositories {
     maven {
-        name = "Terraformers"
+        name = "Mod Menu"
         url = "https://maven.terraformersmc.com/"
     }
     maven {
@@ -21,11 +18,10 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modLocalRuntime("com.terraformersmc:modmenu:${mod_menu_version}")
+    modLocalRuntime("com.terraformersmc:modmenu:10.0.0-beta.1")
 
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:20.4.3"
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:20.6.0"
 }
-
 loom {
     def aw = project(":common").file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {

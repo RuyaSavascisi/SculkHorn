@@ -41,7 +41,7 @@ public class SculkHornDistance extends Item {
     int REMOVE_EXPERIENCE = ModConfigs.DISTANCE_REMOVE_EXPERIENCE.get();
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.distance", DISTANCE)));
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
@@ -78,14 +78,12 @@ public class SculkHornDistance extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
-        InteractionHand interactionHand = user.getUsedItemHand();
-
         if (!level.isClientSide) {
             if (user instanceof Player player) {
                 if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                     if (!player.isCreative()) {
                         player.giveExperiencePoints(REMOVE_EXPERIENCE);
-                        stack.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(interactionHand));
+                        stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                     }
                     player.getCooldowns().addCooldown(this, COOLDOWN);
                     spawnSonicBoom(level, user);
