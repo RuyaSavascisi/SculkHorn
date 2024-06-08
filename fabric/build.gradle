@@ -2,6 +2,7 @@ plugins {
     id 'multiloader-loader'
     id 'fabric-loom' version '1.6-SNAPSHOT'
 }
+
 repositories {
     maven {
         name = "Mod Menu"
@@ -12,6 +13,7 @@ repositories {
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
 }
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
@@ -22,6 +24,7 @@ dependencies {
 
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:20.6.0"
 }
+
 loom {
     def aw = project(":common").file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {

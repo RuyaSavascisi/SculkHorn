@@ -17,12 +17,13 @@ pluginManagement {
         exclusiveContent {
             forRepository {
                 maven {
-                    name = 'Forge'
-                    url = uri("https://maven.minecraftforge.net")
+                    name = 'NeoForge'
+                    url = uri("https://maven.neoforged.net/releases")
                 }
             }
             filter {
-                includeGroupAndSubgroups("net.minecraftforge")
+                includeGroupAndSubgroups("net.neoforged")
+                includeGroup("codechicken")
             }
         }
         exclusiveContent {
@@ -34,6 +35,7 @@ pluginManagement {
             }
             filter {
                 includeGroupAndSubgroups("org.spongepowered")
+                includeGroup("net.minecraftforge")
             }
         }
     }
@@ -46,4 +48,4 @@ plugins {
 rootProject.name = 'SculkHorn'
 include("common")
 include("fabric")
-include("forge")
+include("neoforge")
