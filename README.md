@@ -10,10 +10,10 @@ to make the Warden's Sonic Boom.
 
 #### **Sculk Horn - Default Statistics**
 
-| Horn     | Damage | Cooldown | Area/Distance |
-|----------|--------|----------|---------------|
-| Distance | 8      | 10s      | 16            |
-| Area     | 12     | 15s      | 3.5           |
+| Horn     | Damage | Cooldown | Area/Distance | Xp cost |
+|----------|--------|----------|---------------|---------|
+| Distance | 8      | 10s      | 16            | 55      |
+| Area     | 12     | 15s      | 3.5           | 55      |
 
 #### **Sculk Horn - Mobs with invulnerability**
 
