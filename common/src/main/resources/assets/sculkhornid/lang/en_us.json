@@ -8,13 +8,13 @@
 
   "null" : "",
 
+  "tooltip.cooldown" : "§2%ds Cooldown",
+  "tooltip.damage" : "§2%d Attack Damage",
+  "tooltip.experience" : "§2%d Xp Cost",
+
   "tootip_sculkhorn_area" : "§7Area",
-  "tooltip.damage.area" : "§2%d Attack Damage",
-  "tooltip.cooldown.area" : "§2%ds Cooldown",
   "tooltip.radius" : "§2%d Radius",
 
   "tootip_sculkhorn_distance" : "§7Distance",
-  "tooltip.damage.distance" : "§2%d Attack Damage",
-  "tooltip.cooldown.distance" : "§2%ds Cooldown",
   "tooltip.distance" : "§2%d Distance"
 }

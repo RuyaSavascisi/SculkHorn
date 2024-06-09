@@ -20,7 +20,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -38,9 +37,10 @@ public class SculkHornArea extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.experience", Math.abs(REMOVE_EXPERIENCE))));
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.radius", RADIUS)));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.area", Helper.ticksToSeconds(COOLDOWN))));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage.area", DAMAGE)));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown", Helper.ticksToSeconds(COOLDOWN))));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage", DAMAGE)));
         } else {
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
         }

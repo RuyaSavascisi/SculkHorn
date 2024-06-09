@@ -23,7 +23,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
@@ -43,9 +42,10 @@ public class SculkHornDistance extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.experience", Math.abs(REMOVE_EXPERIENCE))));
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.distance", DISTANCE)));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage.distance", DAMAGE)));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown", Helper.ticksToSeconds(COOLDOWN))));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage", DAMAGE)));
         } else {
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
         }

@@ -8,13 +8,13 @@
 
   "null" : "",
 
+  "tooltip.cooldown" : "§2%ds Enfriamento",
+  "tooltip.damage" : "§2%d Daño de ataque",
+  "tooltip.experience" : "§2%d Costo de xp",
+
   "tootip_sculkhorn_area" : "§7Area",
-  "tooltip.damage.area" : "§2%d Daño por golpe",
-  "tooltip.cooldown.area" : "§2%ds Enfriamento",
   "tooltip.radius" : "§2%d Radio",
 
   "tootip_sculkhorn_distance" : "§7Distancia",
-  "tooltip.damage.distance" : "§2%d Daño por golpe",
-  "tooltip.cooldown.distance" : "§2%ds Enfriamento",
   "tooltip.distance" : "§2%d Distancia"
 }
