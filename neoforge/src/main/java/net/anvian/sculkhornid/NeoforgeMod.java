@@ -17,8 +17,8 @@ public class NeoforgeMod {
         CommonMod.init();
 
         Constants.LOG.info("Registering config for " + Constants.MOD_NAME + "...");
-        ForgeConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SERVER_SPEC);
-        ModConfigs.loadConfig(ModConfigs.SERVER_SPEC, FMLPaths.CONFIGDIR.get().resolve(Constants.MOD_ID + "-config.toml"));
+        ForgeConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SPEC, Constants.MOD_ID + "-config.toml");
+        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve(Constants.MOD_ID + "-config.toml"));
 
         Constants.LOG.info("Registering items for " + Constants.MOD_NAME + "...");
         ModItemRegistry.ITEMS.register(eventBus);

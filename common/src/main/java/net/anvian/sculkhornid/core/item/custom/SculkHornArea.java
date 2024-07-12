@@ -28,11 +28,13 @@ public class SculkHornArea extends Item {
         super(properties);
     }
 
-    float DAMAGE = ModConfigs.AREA_DAMAGE.get().floatValue();
-    int COOLDOWN = ModConfigs.AREA_COOLDOWN.get();
-    float RADIUS = ModConfigs.AREA_RADIUS.get().floatValue();
-    int EXPERIENCE_LEVEL = ModConfigs.AREA_EXPERIENCE_LEVEL.get();
-    int REMOVE_EXPERIENCE = ModConfigs.AREA_REMOVE_EXPERIENCE.get();
+    float DAMAGE = (float) ModConfigs.areaDamage;
+    int COOLDOWN = ModConfigs.areaCooldown;
+    float RADIUS = (float) ModConfigs.areaRadius;
+    int EXPERIENCE_LEVEL = ModConfigs.areaExperienceLevel;
+    int REMOVE_EXPERIENCE = ModConfigs.areaRemoveExperience;
+    int SPEED_DURATION = ModConfigs.areaSpeedDuration;
+    int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
@@ -60,7 +62,7 @@ public class SculkHornArea extends Item {
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
                 player.getCooldowns().addCooldown(this, COOLDOWN);
             }
         }

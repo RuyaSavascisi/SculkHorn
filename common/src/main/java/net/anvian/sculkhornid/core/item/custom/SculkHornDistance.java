@@ -33,11 +33,12 @@ public class SculkHornDistance extends Item {
         super(properties);
     }
 
-    float DAMAGE = ModConfigs.DISTANCE_DAMAGE.get().floatValue();
-    int DISTANCE = ModConfigs.DISTANCE_DISTANCE.get();
-    int COOLDOWN = ModConfigs.DISTANCE_COOLDOWN.get();
-    int EXPERIENCE_LEVEL = ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get();
-    int REMOVE_EXPERIENCE = ModConfigs.DISTANCE_REMOVE_EXPERIENCE.get();
+    float DAMAGE = (float) ModConfigs.distanceDamage;
+    int DISTANCE = ModConfigs.distanceDistance;
+    int COOLDOWN = ModConfigs.distanceCooldown;
+    int EXPERIENCE_LEVEL = ModConfigs.distanceExperienceLevel;
+    int REMOVE_EXPERIENCE = ModConfigs.distanceRemoveExperience;
+    int DISTANCE_USE_TIME = ModConfigs.distanceUseTime;
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
@@ -68,7 +69,7 @@ public class SculkHornDistance extends Item {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return 10;
+        return DISTANCE_USE_TIME;
     }
 
     @Override
