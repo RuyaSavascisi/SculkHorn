@@ -12,8 +12,7 @@ displayURL="https://modrinth.com/mod/-sculk-horn"
 logoFile="${mod_id}.png"
 credits="${credits}"
 authors = "${mod_author}"
-description = '''${description}'''
-
+description = "${description}"
 [[mixins]]
 config = "${mod_id}.mixins.json"
 
@@ -23,7 +22,7 @@ config = "${mod_id}.neoforge.mixins.json"
 [[dependencies.${mod_id}]]
 modId = "neoforge"
 type="required"
-versionRange = "${neoforge_loader_version_range}"
+versionRange = "[${neoforge_version},)"
 ordering = "NONE"
 side = "BOTH"
 

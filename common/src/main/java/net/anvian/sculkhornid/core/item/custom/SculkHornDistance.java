@@ -68,7 +68,7 @@ public class SculkHornDistance extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack itemStack) {
+    public int getUseDuration(ItemStack pStack, LivingEntity pEntity) {
         return DISTANCE_USE_TIME;
     }
 

@@ -1,13 +1,17 @@
 plugins {
     id 'multiloader-common'
-    id 'org.spongepowered.gradle.vanilla' version '0.2.1-SNAPSHOT'
+    id 'net.neoforged.moddev'
 }
 
-minecraft {
-    version(minecraft_version)
-    def aw = file("src/main/resources/${mod_id}.accesswidener")
-    if (aw.exists()) {
-        accessWideners(aw)
+neoForge {
+    neoFormVersion = neo_form_version
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.add(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
     }
 }
 
@@ -16,15 +20,14 @@ repositories {
         name = "Fuzs Mod Resources"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
-    maven {
-        name = "FabricMC"
-        url = "https://maven.fabricmc.net/"
-    }
 }
 
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:20.6.0"
+    compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
+    annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
+
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:21.0.1"
 }
 
 configurations {
