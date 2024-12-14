@@ -25,7 +25,7 @@ dependencies {
 
     modLocalRuntime("com.terraformersmc:modmenu:11.0.1")
 
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.0.1"
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.0.8"
 }
 
 loom {
