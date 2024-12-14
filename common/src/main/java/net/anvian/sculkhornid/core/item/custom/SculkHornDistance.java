@@ -16,7 +16,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
@@ -28,17 +27,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SculkHornDistance extends Item {
-    public SculkHornDistance(Properties properties) {
-        super(properties);
-    }
-
-    float DAMAGE = (float) ModConfigs.distanceDamage;
+public class SculkHornDistance extends SculkHorn {
     int DISTANCE = ModConfigs.distanceDistance;
-    int COOLDOWN = ModConfigs.distanceCooldown;
-    int EXPERIENCE_LEVEL = ModConfigs.distanceExperienceLevel;
-    int REMOVE_EXPERIENCE = ModConfigs.distanceRemoveExperience;
     int DISTANCE_USE_TIME = ModConfigs.distanceUseTime;
+
+    public SculkHornDistance(Properties properties) {
+        super(
+                properties,
+                (float) ModConfigs.distanceDamage,
+                ModConfigs.distanceCooldown,
+                ModConfigs.distanceExperienceLevel,
+                ModConfigs.distanceRemoveExperience
+        );
+    }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
@@ -59,7 +60,7 @@ public class SculkHornDistance extends Item {
         if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
             player.startUsingItem(hand);
         }
-        return super.use(level, player, hand);
+        return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 
     @Override
@@ -95,7 +96,7 @@ public class SculkHornDistance extends Item {
     }
 
     private void spawnSonicBoom(Level level, LivingEntity user) {
-        level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1.0f, 1.0f);
+        level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 3.0f, 1.0f);
 
         Vec3 target = user.position().add(user.getLookAngle().scale(DISTANCE));
         Vec3 source = user.position().add(0.0, 1.6f, 0.0);
@@ -103,13 +104,11 @@ public class SculkHornDistance extends Item {
         Vec3 normalized = offSetToTarget.normalize();
 
         Set<Entity> hit = new HashSet<>();
-        for (int particleIndex = 1; particleIndex < Mth.floor(offSetToTarget.length()) + 7; ++particleIndex) {
+        for (int particleIndex = 1; particleIndex < Mth.floor(offSetToTarget.length()) + 7; particleIndex++) {
             Vec3 particlePos = source.add(normalized.scale(particleIndex));
             ((ServerLevel) level).sendParticles(ParticleTypes.SONIC_BOOM, particlePos.x, particlePos.y, particlePos.z, 1, 0.0, 0.0, 0.0, 0.0);
 
-            hit.addAll(level.getEntitiesOfClass(LivingEntity.class,
-                    new AABB(new BlockPos((int) particlePos.x, (int) particlePos.y, (int) particlePos.z)).inflate(2),
-                    it -> !(Helper.isAllOf(user, it))));
+            hit.addAll(level.getEntitiesOfClass(LivingEntity.class, new AABB(new BlockPos((int) particlePos.x, (int) particlePos.y, (int) particlePos.z)).inflate(2), it -> !(Helper.isAllOf(user, it))));
 
             hit.remove(user);
 

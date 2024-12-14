@@ -16,25 +16,26 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class SculkHornArea extends Item {
-    public SculkHornArea(Properties properties) {
-        super(properties);
-    }
-
-    float DAMAGE = (float) ModConfigs.areaDamage;
-    int COOLDOWN = ModConfigs.areaCooldown;
+public class SculkHornArea extends SculkHorn {
     float RADIUS = (float) ModConfigs.areaRadius;
-    int EXPERIENCE_LEVEL = ModConfigs.areaExperienceLevel;
-    int REMOVE_EXPERIENCE = ModConfigs.areaRemoveExperience;
     int SPEED_DURATION = ModConfigs.areaSpeedDuration;
     int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
+
+    public SculkHornArea(Properties properties) {
+        super(
+                properties,
+                (float) ModConfigs.areaDamage,
+                ModConfigs.areaCooldown,
+                ModConfigs.areaExperienceLevel,
+                ModConfigs.areaRemoveExperience
+        );
+    }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
@@ -73,7 +74,7 @@ public class SculkHornArea extends Item {
         }
 
         if (player.experienceLevel < EXPERIENCE_LEVEL && !player.isCreative()) {
-            return super.use(level, player, interactionHand);
+            return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
         } else {
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
         }
