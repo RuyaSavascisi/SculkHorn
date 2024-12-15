@@ -41,10 +41,10 @@ jobs:
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: BfFhIqA7
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-token: ${{ env.MODRINTH_TOKEN }}
 
           curseforge-id: 636227
-          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           files: |
             fabric/build/libs/!(*-@(dev|sources|javadoc)).jar
