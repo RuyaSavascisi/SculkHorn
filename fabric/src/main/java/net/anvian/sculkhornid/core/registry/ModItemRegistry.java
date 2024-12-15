@@ -10,7 +10,7 @@ public class ModItemRegistry {
     public static void registerItems() {
         Constants.LOG.info("Registering items for " + Constants.MOD_NAME + "...");
 
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sculkhorn"), ModItems.SCULKHORN);
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sculkhorn_sonicboom"), ModItems.SCULKHORN_SONICBOOM);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.SCULKHORN_ITEM_ID), ModItems.SCULKHORN);
+        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.SCULKHORN_SONICBOOM_ITEM_ID), ModItems.SCULKHORN_SONICBOOM);
     }
 }
