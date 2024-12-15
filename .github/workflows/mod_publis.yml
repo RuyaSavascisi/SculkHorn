@@ -3,44 +3,7 @@ name: Mod Publish
 on: [ workflow_dispatch ]
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check Environment Variables
-        run: env
-
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Make Gradle Wrapper Executable
-        run: chmod +x gradlew
-
-      - name: Set Environment Variables from Gradle
-        run: ./gradlew printEnv
-
-      - name: Include Fabric Publish Steps
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const yaml = require('js-yaml');
-            const fabricPublish = yaml.load(fs.readFileSync('.github/workflows/fabric_publish.yml', 'utf8'));
-            return fabricPublish.jobs.publish.steps;
-
-      - name: Include NeoForge Publish Steps
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const yaml = require('js-yaml');
-            const neoforgePublish = yaml.load(fs.readFileSync('.github/workflows/neoforge_publish.yml', 'utf8'));
-            return neoforgePublish.jobs.publish.steps;
+  fabric-reusable:
+    uses: ./.github/workflows/fabric_publish.yml
+  neoforge-reusable:
+    uses: ./.github/workflows/neoforge_publish.yml
