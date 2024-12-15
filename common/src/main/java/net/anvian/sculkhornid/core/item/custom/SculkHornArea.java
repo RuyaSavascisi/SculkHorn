@@ -28,13 +28,7 @@ public class SculkHornArea extends SculkHorn {
     int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
 
     public SculkHornArea(Properties properties) {
-        super(
-                properties,
-                (float) ModConfigs.areaDamage,
-                ModConfigs.areaCooldown,
-                ModConfigs.areaExperienceLevel,
-                ModConfigs.areaRemoveExperience
-        );
+        super(properties, (float) ModConfigs.areaDamage, ModConfigs.areaCooldown, ModConfigs.areaExperienceLevel, ModConfigs.areaRemoveExperience);
     }
 
     @Override
@@ -64,7 +58,11 @@ public class SculkHornArea extends SculkHorn {
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
-                player.getCooldowns().addCooldown(this, COOLDOWN);
+                if (ModConfigs.bothInCooldown) {
+                    applyCooldownToBothHorns(player);
+                } else {
+                    player.getCooldowns().addCooldown(this, COOLDOWN);
+                }
             }
         }
         if (level.isClientSide) {

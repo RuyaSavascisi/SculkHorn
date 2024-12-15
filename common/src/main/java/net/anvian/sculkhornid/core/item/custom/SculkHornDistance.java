@@ -87,7 +87,11 @@ public class SculkHornDistance extends SculkHorn {
                         player.giveExperiencePoints(REMOVE_EXPERIENCE);
                         stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                     }
-                    player.getCooldowns().addCooldown(this, COOLDOWN);
+                    if (ModConfigs.bothInCooldown) {
+                        applyCooldownToBothHorns(player);
+                    } else {
+                        player.getCooldowns().addCooldown(this, COOLDOWN);
+                    }
                     spawnSonicBoom(level, user);
                 }
             }
